@@ -3,7 +3,7 @@ class CreatePeople < ActiveRecord::Migration
     create_table :people do |t|
       t.string :nom
       t.string :email
-      t.integer :tel, limit: 10
+      t.integer :tel
       t.integer :group_id
       t.boolean :sensei
 
