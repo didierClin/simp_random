@@ -7,8 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <div id="logo" class="navbar-brand">
+          <%= link_to "OrganiZation", root_path %>
+        </div>
+        <nav class="collapse navbar-collapse navbar-ex1-collapse">
+                  <ul class="nav navbar-nav navbar-right">
 
-<%= yield %>
+                        <li>
+                            <%= link_to "Utilisateurs",  people_path %>
+                        </li>
+
+                      </ul>
+            </nav>
+        </div>
+      </div>
+  </header>
+
+  <div class="message"> <%= flash_messages %></div>
+
+     <div class="container">
+       <%= yield %>
+     </div>
 
 </body>
 </html>
