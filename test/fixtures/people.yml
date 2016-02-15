@@ -4,12 +4,12 @@ one:
   nom: MyString
   email: MyString
   tel: 1
-  group_id: 
+  group_id: 1
   sensei: false
 
 two:
   nom: MyString
   email: MyString
   tel: 1
-  group_id: 
+  group_id: 1
   sensei: false

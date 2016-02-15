@@ -4,7 +4,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :nom
       t.string :email
       t.integer :tel, limit: 10
-      t.number :group_id
+      t.integer :group_id
       t.boolean :sensei
 
       t.timestamps null: false
