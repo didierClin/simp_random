@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-
+  before_action :nb_group, only: :random_people
 
   # GET /groups
   # GET /groups.json
@@ -95,6 +95,12 @@ class GroupsController < ApplicationController
 
 
   private
+
+    def  nb_group
+      if Group.all.size < 2
+         redirect_to root_path, notice: 'Vous devez créer deux groupes pour affecter les utilisateurs.'
+       end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])

@@ -1,34 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Groups</h1>
+<h1>Liste des Groupes</h1>
 
 
     <% @groups.each do |group| %>
-      <ul class="jumbotron">
-        <li><%= group.nom %></li>
-        <li><%= group.salle %></li>
-        <li><%= group.tache %></li>
+      <ul class="panel ">
+        <li><h2><%= group.nom %></h2></li>
+        <li><h3>Salle : <%= group.salle %></h3></li>
+        <li><h3>Tache : <%= group.tache %></h3></li>
         <li><%= link_to 'Show', group %></li>
         <li><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-      </ul class="jumbotron">
+        <%  @people.each do |p| %>
+          <% if group.id == p.group_id %>
+            <%= p.nom  %>
+
+          <% end %>
+      <% end %>
+      </ul>
     <% end %>
 
 <button type="button" class="btn btn-default" aria-label="Left Align">
   <%= link_to 'Ajouter un groupe', new_group_path  %>
   <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
 </button>
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <%= link_to 'Affecter aux groupes', randomize_path  %>
-  <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
-</button>
 
+  <% if @groups.size < 0 %>
+    Créez deux groupes pour le Random
+  <% else %>
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+      <%= link_to 'Affecter aux groupes', randomize_path  %>
+      <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+    </button>
+  <% end %>
 
 <h2>Liste des utilisateurs</h2>
 
-  <ul class="jumbotron">
+  <dl class="jumbotron">
     <% @people.each do |person| %>
-        <li><%= person.nom %></li>
-        <li><%= person.group_id %></li>
-        <li><%= person.sensei %></li>
+        <dt><h3><%= person.nom %></h3></dt>
+        <dd><h4><%= person.group_id %></h4></dd>
+        <dd><h4><%= person.sensei %></h4></dd>
     <% end %>
   </ul>
