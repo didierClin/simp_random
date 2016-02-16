@@ -1,10 +1,12 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
+
   # GET /groups
   # GET /groups.json
   def index
     @groups = Group.all
+    @people = Person.all
   end
 
   # GET /groups/1
@@ -60,6 +62,37 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def random_people
+    @groups = Group.all
+    @people = Person.all
+
+      @people.each do |p|
+        p.group_id = nil
+        p.save
+      end
+
+      maxByGroup = 1 + (@people.size/@groups.size).ceil
+
+      id_group = []
+
+      @groups.each do |group|
+        id_group << group.id
+      end
+
+      @people.each do |i|
+         random_group = id_group.sample
+         i.group_id = random_group
+         i.save
+         if @people.where(group_id:random_group).size == maxByGroup
+             id_group.delete(random_group)
+         end
+      i.save
+      end
+      redirect_to root_path
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

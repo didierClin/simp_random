@@ -2,32 +2,33 @@
 
 <h1>Listing Groups</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Salle</th>
-      <th>Tache</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
     <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.nom %></td>
-        <td><%= group.salle %></td>
-        <td><%= group.tache %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <ul class="jumbotron">
+        <li><%= group.nom %></li>
+        <li><%= group.salle %></li>
+        <li><%= group.tache %></li>
+        <li><%= link_to 'Show', group %></li>
+        <li><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      </ul class="jumbotron">
     <% end %>
-  </tbody>
-</table>
+
 <button type="button" class="btn btn-default" aria-label="Left Align">
+  <%= link_to 'Ajouter un groupe', new_group_path  %>
   <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
 </button>
-<br>
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <%= link_to 'Affecter aux groupes', randomize_path  %>
+  <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
+</button>
 
-<%= link_to 'New Group', new_group_path %>
+
+<h2>Liste des utilisateurs</h2>
+
+  <ul class="jumbotron">
+    <% @people.each do |person| %>
+        <li><%= person.nom %></li>
+        <li><%= person.group_id %></li>
+        <li><%= person.sensei %></li>
+    <% end %>
+  </ul>
