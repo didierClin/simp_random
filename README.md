@@ -29,3 +29,4 @@ Elle devra etre responsive ,et comporter 5 pages(pas plus) :
 	Les personnes seront "created!" via la seed
 	Les groupes seront "created!" via le formulaire en ligne
 	Sur la page  "Organisation" un bouton vas enrichir les groupes avec les personnes de manière aléatoire
+
