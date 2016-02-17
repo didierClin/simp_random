@@ -4,20 +4,24 @@
 
 
     <% @groups.each do |group| %>
-      <ul class="panel ">
-        <li><h2><%= group.nom %></h2></li>
-        <li><h3>Salle : <%= group.salle %></h3></li>
-        <li><h3>Tache : <%= group.tache %></h3></li>
+      <dl class="panel list-inline">
+        <dt><h2><%= group.nom %></h2></dt>
+        <dd><h3>Salle : <%= group.salle %></h3></dd>
+        <dd><h3>Tache : <%= group.tache %></h3></dd>
         <%  @people.each do |p| %>
           <% if group.id == p.group_id %>
-            <%= p.nom %>
+          <p><b>Nom:</b>
+                <%= best_in_place p, :nom %>
+          <% if p.sensei %>
+                Appellez moi Sensei!
+          <% end %>
+            <td><%= best_in_place p, :sensei,  :as => :select, :collection => {"1" => "Sensei", "2" => ""} %></td>
             <br>
 
           <% end %>
       <% end %>
-        <li><%= link_to 'Show', group %></li>
-        <li><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-      </ul>
+        <dd><%= link_to 'Show', group %> | <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></dd>
+      </dl>
     <% end %>
 
     <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -40,7 +44,6 @@
         <% @people.each do |person| %>
           <% if person.group_id == 0 %>
             <dt><h3><%= person.nom %></h3></dt>
-            <dd><h4><%= person.group_id %></h4></dd>
             <dd><h4><%= person.sensei %></h4></dd>
 
         <% end %>

@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :nb_group, only: :random_people
+  before_action :clear_gpe, only: :destroy
 
   # GET /groups
   # GET /groups.json
@@ -82,6 +83,7 @@ class GroupsController < ApplicationController
       end
 
       @people.each do |i|
+        i.sensei = false
          random_group = id_group.sample
          i.group_id = random_group
          i.save
@@ -96,6 +98,15 @@ class GroupsController < ApplicationController
 
   private
 
+    def clear_gpe
+    @people = Person.all
+      @group = Group.find(params[:id])
+      @people.each do |p|
+        p.group_id = 0 unless p.group_id != @group.id
+        p.save
+      end
+
+    end
     def  nb_group
       if Group.all.size < 2
          redirect_to root_path, notice: 'Vous devez créer deux groupes pour affecter les utilisateurs.'

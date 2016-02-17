@@ -21,7 +21,7 @@
         <td><%= person.email %></td>
         <td><%= person.tel %></td>
         <td><%= person.group_id %></td>
-        <td><%= person.sensei %></td>
+        <td><%= best_in_place person, :sensei,  :as => :select, :collection => {"1" => "Sensei", "2" => ""} %></td>
       </tr>
     <% end %>
   </tbody>
