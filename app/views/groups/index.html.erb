@@ -2,9 +2,9 @@
 
 <h1>Liste des Groupes</h1>
 
-
     <% @groups.each do |group| %>
-      <dl class="panel list-inline">
+  <div>
+      <dl class="panel">
         <dt><h2><%= group.nom %></h2></dt>
         <dd><h3>Salle : <%= group.salle %></h3></dd>
         <dd><h3>Tache : <%= group.tache %></h3></dd>
@@ -22,6 +22,7 @@
       <% end %>
         <dd><%= link_to 'Show', group %> | <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></dd>
       </dl>
+  </div>
     <% end %>
 
     <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -45,7 +46,6 @@
           <% if person.group_id == 0 %>
             <dt><h3><%= person.nom %></h3></dt>
             <dd><h4><%= person.sensei %></h4></dd>
-
-        <% end %>
+          <% end %>
         <% end %>
       </ul>

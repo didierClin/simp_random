@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
   before_action :nb_group, only: :random_people
   before_action :clear_gpe, only: :destroy
 
+
   # GET /groups
   # GET /groups.json
   def index
@@ -70,7 +71,7 @@ class GroupsController < ApplicationController
     @people = Person.all
 
       @people.each do |p|
-        p.group_id = nil
+        p.group_id = 0
         p.save
       end
 
@@ -92,7 +93,7 @@ class GroupsController < ApplicationController
          end
       i.save
       end
-      redirect_to root_path
+      redirect_to groups_path
   end
 
 
