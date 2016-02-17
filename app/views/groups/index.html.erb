@@ -8,8 +8,6 @@
         <li><h2><%= group.nom %></h2></li>
         <li><h3>Salle : <%= group.salle %></h3></li>
         <li><h3>Tache : <%= group.tache %></h3></li>
-        <li><%= link_to 'Show', group %></li>
-        <li><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         <%  @people.each do |p| %>
           <% if group.id == p.group_id %>
             <%= p.nom %>
@@ -17,6 +15,8 @@
 
           <% end %>
       <% end %>
+        <li><%= link_to 'Show', group %></li>
+        <li><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       </ul>
     <% end %>
 
