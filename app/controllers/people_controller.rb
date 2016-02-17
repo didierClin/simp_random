@@ -54,10 +54,10 @@ end
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to root_path, notice: 'people was successfully updated.' }
-        format.json { render :show, status: :ok, location: @people }
+        format.json { respond_with_bip(@person) }
       else
         format.html { render :edit }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@person) }
       end
     end
   end

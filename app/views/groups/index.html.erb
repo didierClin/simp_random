@@ -8,7 +8,7 @@
         <dt><h2><%= group.nom %></h2></dt>
         <dd><h3>Salle : <%= group.salle %></h3></dd>
         <dd><h3>Tache : <%= group.tache %></h3></dd>
-        <%  @people.each do |p| %>
+        <%  group.person.each do |p| %>
           <% if group.id == p.group_id %>
           <p><b>Nom:</b>
                 <%= best_in_place p, :nom %>

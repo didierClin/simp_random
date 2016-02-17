@@ -18,10 +18,10 @@
     <% @people.each do |person| %>
       <tr>
         <td><%= person.nom %></td>
-        <td><%= person.email %></td>
+        <td><%= best_in_place person, :email %></td>
         <td><%= person.tel %></td>
         <td><%= person.group_id %></td>
-        <td><%= best_in_place person, :sensei,  :as => :select, :collection => {"1" => "Sensei", "2" => ""} %></td>
+        <td><%= best_in_place person, :sensei,  :as => :checkbox %></td>
       </tr>
     <% end %>
   </tbody>
