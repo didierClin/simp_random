@@ -65,33 +65,24 @@ class GroupsController < ApplicationController
 
 
   def random_people
-    @groups = Group.all
-    @people = Person.all
-
-      @people.each do |p|
-        p.group_id = nil
-        p.save
-      end
-
-      maxByGroup = 1 + (@people.size/@groups.size).ceil
-
-      id_group = []
-
-      @groups.each do |group|
-        id_group << group.id
-      end
-
-      @people.each do |i|
-         random_group = id_group.sample
-         i.group_id = random_group
-         i.save
-         if @people.where(group_id:random_group).size == maxByGroup
-             id_group.delete(random_group)
-         end
-      i.save
-      end
-      redirect_to root_path
-  end
+     idperson = Person.all.map{|x| x.id}
+     if Group.all.count>0
+       while idperson.count >0
+         Group.all.each do |grp|
+           a = idperson.sample
+           Person.find(a).update_attributes(group_id: grp.id) unless a.nil?
+           ## summarize that:
+           # b = Person.find(a)
+           # b.group_id = grp.id
+           # b.save
+           idperson.delete(a)
+         end
+       end
+       else
+         redirect_to :root, notice: "You need at least one group .Dumbass!"
+       end
+       redirect_to :root, notice: "Yataî  all has been randomized!!!"
+   end
 
 
   private
