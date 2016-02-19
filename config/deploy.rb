@@ -4,6 +4,9 @@ lock '3.4.0'
 set :application, 'simp_random'
 set :repo_url, 'git@github.com:didierClin/simp_random.git'
 
+
+set :passenger_restart_with_touch, true
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

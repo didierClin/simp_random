@@ -32,6 +32,7 @@ group :development, :test do
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
+  gem 'capistrano-passenger'
 
   # Add this if you're using rvm
   gem 'capistrano-rvm', github: "capistrano/rvm"
