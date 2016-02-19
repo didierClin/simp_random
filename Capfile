@@ -1,5 +1,5 @@
 # Load DSL and set up stages
-require 'capistrano/setup'
+# require 'capistrano/setup'
 
 # Include default deployment tasks
 require 'capistrano/deploy'
@@ -7,7 +7,7 @@ require 'capistrano/deploy'
 # If you are using rvm add these lines:
 require 'capistrano/rvm'
 set :rvm_type, :user
-set :rvm_ruby_version, '2.2.4p230'
+set :rvm_ruby_version, '2.2.4'
 
 require 'capistrano/bundler'
 require 'capistrano/rails'
