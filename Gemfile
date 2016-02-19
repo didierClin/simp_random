@@ -28,6 +28,13 @@ gem 'bootstrap-sass'
 gem 'best_in_place'
 
 group :development, :test do
+
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+
+# Add this if you're using rvm
+gem 'capistrano-rvm', github: "capistrano/rvm"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
