@@ -59,44 +59,39 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Group was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
 
   def random_people
-     idperson = Person.all.map{|x| x.id}
-     if Group.all.count>0
-       while idperson.count >0
-         Group.all.each do |grp|
-           a = idperson.sample
-           Person.find(a).update_attributes(group_id: grp.id) unless a.nil?
-           ## summarize that:
-           # b = Person.find(a)
-           # b.group_id = grp.id
-           # b.save
-           idperson.delete(a)
-         end
-       end
-       else
-         redirect_to :root, notice: "You need at least one group .Dumbass!"
-       end
-       redirect_to :root, notice: "Yataî  all has been randomized!!!"
-   end
+      idperson = Person.all.map{|x| x.id}
+      if Group.all.count>1
+        while idperson.count >0
+          Group.all.each do |grp|
+            a = idperson.sample
+            Person.find(a).update_attributes(group_id: grp.id) unless a.nil?
+            idperson.delete(a)
+          end
+        end
+      else
+        redirect_to :root, notice: "You need at least two groups .Dumbass!"
+      end
+  end
 
 
   private
 
     def clear_gpe
-    @people = Person.all
-      @group = Group.find(params[:id])
-      @people.each do |p|
-        p.group_id = 0 unless p.group_id != @group.id
-        p.save
-      end
-
+        @people = Person.all
+        @group = Group.find(params[:id])
+        @people.each do |p|
+          p.group_id = 0 unless p.group_id != @group.id
+          p.save
+        end
     end
+
     def  nb_group
       if Group.all.size < 2
          redirect_to root_path, notice: 'Vous devez créer deux groupes pour affecter les utilisateurs.'

@@ -20,22 +20,16 @@
 
           <% end %>
       <% end %>
-        <dd><%= link_to 'Show', group %> | <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></dd>
+              <dd><%= link_to ' ', group, class: "glyphicon glyphicon-eye-open" %> | <%= link_to ' ', group , class: "glyphicon glyphicon-minus", method: :delete, data: { confirm: 'Are you sure?' } %></dd>
       </dl>
     <% end %>
 
-    <button type="button" class="btn btn-default" aria-label="Left Align">
-      <%= link_to 'Ajouter un groupe', new_group_path  %>
-      <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-    </button>
-
-    <% if @groups.size < 0 %>
+    <%= link_to 'Nouveau ', new_group_path, class: "glyphicon glyphicon-plus"  %>
+      | 
+    <% if @groups.size < 2 %>
       Créez deux groupes pour le Random
     <% else %>
-      <button type="button" class="btn btn-default" aria-label="Left Align">
-        <%= link_to 'Affecter aux groupes', randomize_path  %>
-        <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
-      </button>
+        <%= link_to ' Random', randomize_path, class: "glyphicon glyphicon-retweet"  %>
     <% end %>
 
     <h2>Liste des utilisateurs</h2>
