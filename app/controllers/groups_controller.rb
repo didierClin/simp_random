@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to @group, notice: 'Le groupe a été créé.' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to @group, notice: 'Le groupe a été modifié.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Le groupe a été supprimé.' }
       format.json { head :no_content }
     end
   end
@@ -76,8 +76,9 @@ class GroupsController < ApplicationController
           end
         end
       else
-        redirect_to :root, notice: "You need at least two groups .Dumbass!"
+        redirect_to :root, notice: "Vous devez avoir deux groupes minimum !"
       end
+      redirect_to :root, notice: "Les groupes ont été modifiés."
   end
 
 
